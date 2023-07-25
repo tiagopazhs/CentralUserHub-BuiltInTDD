@@ -1,0 +1,19 @@
+{
+  "name": "central-user-hub-back",
+  "version": "1.0.0",
+  "description": "This the back-end of central user hub.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+  },
+  "author": "Tiago Paz",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongo": "^0.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.3"
+  }
+}
