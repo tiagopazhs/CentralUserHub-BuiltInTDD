@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:dev": "jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "author": "Tiago Paz",
   "license": "ISC",
