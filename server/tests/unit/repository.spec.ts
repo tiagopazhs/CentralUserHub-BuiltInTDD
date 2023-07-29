@@ -1,24 +1,24 @@
 import {describe, expect, test} from '@jest/globals';
-import EventRepository from "../../src/repository";
+import UserRepository from "../../src/repository";
 
 describe("UserRepository", () => {
-  test('repository should create a new event (C)', async () => {
-    const event = {
+  test('repository should create a new user (C)', async () => {
+    const user = {
       name: 'Renato',
       email: 'contato.unit@legiaourbana.com',
       password: 'senha123',
     };
 
-    const mockInsertOne = jest.fn(() => Promise.resolve({ ops: [event] }));
+    const mockInsertOne = jest.fn(() => Promise.resolve({ ops: [user] }));
     const mockCollection = { insertOne: mockInsertOne };
 
-    const eventRepo = EventRepository(mockCollection);
-    const resultado = await eventRepo.create(event);
+    const userRepo = UserRepository(mockCollection);
+    const resultado = await userRepo.create(user);
 
-    expect(resultado).toEqual(event);
+    expect(resultado).toEqual(user);
     
     // Spy 'Espião'
-    expect(mockInsertOne).toHaveBeenCalledWith(event);
+    expect(mockInsertOne).toHaveBeenCalledWith(user);
     
   });
 });

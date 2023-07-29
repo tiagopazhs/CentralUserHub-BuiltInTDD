@@ -11,7 +11,7 @@ describe("UserRepository", () => {
         const dsn = 'mongodb://root:root@localhost?retryWrites=true&writeConcern=majority'
         client = new MongoClient(dsn);
         await client.connect();
-        const collection = client.db('app_db').collection('events');
+        const collection = client.db('app_db').collection('users');
         repository = UserRepository(collection);
     });
 
@@ -25,7 +25,7 @@ describe("UserRepository", () => {
         await repository.deleteAll();
     });
 
-    test("repository should create a new event (C)", async () => {
+    test("repository should create a new user (C)", async () => {
 
         const result = await repository.create({
             name: 'Renato',
@@ -40,9 +40,9 @@ describe("UserRepository", () => {
             password: '12345678'
         }));
 
-        const events = await repository.findAll();
+        const users = await repository.findAll();
 
-        expect(events.length).toBe(1);
+        expect(users.length).toBe(1);
 
     })
 });

@@ -1,30 +1,30 @@
 import { ObjectId } from 'mongodb';
 
-interface Event {
+interface User {
   _id?: ObjectId;
   name: string;
   email: string;
   password: string;
 }
 
-interface EventRepository {
+interface UserRepository {
   deleteAll: () => Promise<void>;
-  create: (event: Event) => Promise<Event>;
-  findAll: () => Promise<Event[]>;
+  create: (user: User) => Promise<User>;
+  findAll: () => Promise<User[]>;
 }
 
-function EventRepository(collection): EventRepository {
+function UserRepository(collection): UserRepository {
 
   async function deleteAll() {
     await collection.deleteMany({});
   }
 
-  async function create(event: Event): Promise<Event> {
-    await collection.insertOne(event);
-    return event;
+  async function create(user: User): Promise<User> {
+    await collection.insertOne(user);
+    return user;
   }
 
-  async function findAll(): Promise<Event[]> {
+  async function findAll(): Promise<User[]> {
     return await collection.find({}).toArray();
   }
 
@@ -35,4 +35,4 @@ function EventRepository(collection): EventRepository {
   };
 }
 
-export default EventRepository;
+export default UserRepository;
