@@ -28,14 +28,16 @@ describe("UserRepository", () => {
     test("repository should create a new event (C)", async () => {
 
         const result = await repository.create({
-            name: 'Rock in Rio',
-            date: '2024-02-07'
+            name: 'Renato',
+            email: 'contato@legiaourbana.com',
+            password: '12345678'
         })
 
-        //containing just a part of the object 
+        //containing just a part of the object without the id
         expect(result).toStrictEqual(expect.objectContaining({
-            name: 'Rock in Rio',
-            date: '2024-02-07'
+            name: 'Renato',
+            email: 'contato@legiaourbana.com',
+            password: '12345678'
         }));
 
         const events = await repository.findAll();
