@@ -32,12 +32,19 @@ describe("UserRepository", () => {
       }))
       return Promise.resolve();
     });
+    const mockDelete = jest.fn(() => {
+      const userDeleted = []
+      mockFind.mockImplementation(() => ({
+        toArray: () => Promise.resolve(userDeleted),
+      }))
+      return Promise.resolve();
+    });
     
-
     mockCollection = {
       insertOne: mockInsertOne,
       find: mockFind,
-      updateOne: mockUpdate
+      updateOne: mockUpdate,
+      deleteOne: mockDelete
     };
     userRepo = UserRepository(mockCollection);
 
@@ -100,5 +107,23 @@ describe("UserRepository", () => {
 
   });
 
-  test.todo('Respository must delete an user (D)');
+  test('Respository must delete an user (D)', async () => {
+
+    // 1 -> Db must be empty.
+    expect((await userRepo.findAll()).length).toBe(0);
+
+    // 2 -> User created with success.
+    const result = await userRepo.create(user);
+    expect(result).toEqual(user);
+
+    // 3 -> First record must be equal the user object.
+    expect((await userRepo.findAll())[0]).toStrictEqual(user);
+
+    // 4. Delete the user.
+    await userRepo.deleteOne(user)
+
+    // 5. Db must be empty.
+    expect((await userRepo.findAll()).length).toBe(0);
+    
+  });
 });
