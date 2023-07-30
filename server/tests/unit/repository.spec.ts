@@ -25,9 +25,19 @@ describe("UserRepository", () => {
     const mockFind = jest.fn(() => ({
       toArray: () => Promise.resolve([]),
     }));
+    const mockUpdate = jest.fn((update) => {
+      const userUpdated = {...user, ...update}
+      mockFind.mockImplementation(() => ({
+        toArray: () => Promise.resolve([userUpdated]),
+      }))
+      return Promise.resolve();
+    });
+    
+
     mockCollection = {
       insertOne: mockInsertOne,
       find: mockFind,
+      updateOne: mockUpdate
     };
     userRepo = UserRepository(mockCollection);
 
@@ -62,18 +72,31 @@ describe("UserRepository", () => {
 
     // 3 -> First record must be equal the user object.
     expect((await userRepo.findAll())[0]).toStrictEqual(user);
-    
+
   });
 
   test('Respository must update an user (U)', async () => {
 
-    // 1. Db must be empty.
+    // 1 -> Db must be empty.
+    expect((await userRepo.findAll()).length).toBe(0);
 
-    // 2. Insert an user.
+    // 2 -> User created with success.
+    const result = await userRepo.create(user);
+    expect(result).toEqual(user);
 
-    // 3. Update the user.
+    // 3 -> First record must be equal the user object.
+    expect((await userRepo.findAll())[0]).toStrictEqual(user);
 
-    // 4. Test if the user was update with success.
+    // 4. Update the user.
+    const newUser = {
+      name: 'Renato',
+      email: 'contato.update@legiaourbana.com',
+      password: 'senha123safe',
+    };
+    await userRepo.update(newUser)
+
+    // 5. Test if the user was update with success.
+    expect((await userRepo.findAll())[0]).toStrictEqual(newUser)
 
   });
 
