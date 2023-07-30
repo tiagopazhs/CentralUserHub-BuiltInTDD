@@ -38,7 +38,7 @@ describe("UserRepository", () => {
 
         // 2 -> User created with success.
         const result = await repository.create(user);
-        
+
         //containing just a part of the object without the id
         expect(result).toStrictEqual(expect.objectContaining(user));
 
@@ -47,10 +47,19 @@ describe("UserRepository", () => {
 
     })
 
-    test.todo('Respository must read an user (R)');
-    // 1 -> Db must be empty.
-    // 2 -> User created with success.
-    // 3 -> First record must be equal the user object.
+    test('Respository must read an user (R)', async () => {
+
+        // 1 -> Db must be empty.
+        expect((await repository.findAll()).length).toBe(0);
+        
+        // 2 -> User created with success.
+        const result = await repository.create(user);
+        expect(result).toStrictEqual(expect.objectContaining(user));
+        
+        // 3 -> First record must be equal the user object.
+        expect((await repository.findAll())[0]).toStrictEqual(expect.objectContaining(user));
+
+    });
 
     test.todo('Respository must update an user (U)');
     // 1 -> Db must be empty.
