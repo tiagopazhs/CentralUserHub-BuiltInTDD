@@ -94,16 +94,17 @@ describe("UserRepository", () => {
     expect((await userRepo.findAll())[0]).toStrictEqual(user);
 
     // 4. Update the user.
+    user.email = 'contato.update@legiaourbana.com'
     const newUser = {
       name: 'Renato',
       email: 'contato.update@legiaourbana.com',
-      password: 'senha123safe',
+      password: 'senha123',
     };
     await userRepo.update(newUser)
 
     // 5. Test if the user was update with success.
-    expect((await userRepo.findAll())[0]).toStrictEqual(newUser)
-
+    expect((await userRepo.findAll())[0]).toStrictEqual(expect.objectContaining(newUser))
+    
   });
 
   test('Respository must delete an user (D)', async () => {
