@@ -26,7 +26,7 @@ describe("UserRepository", () => {
       toArray: () => Promise.resolve([]),
     }));
     const mockUpdate = jest.fn((update) => {
-      const userUpdated = {...user, ...update}
+      const userUpdated = { ...user, ...update }
       mockFind.mockImplementation(() => ({
         toArray: () => Promise.resolve([userUpdated]),
       }))
@@ -39,7 +39,7 @@ describe("UserRepository", () => {
       }))
       return Promise.resolve();
     });
-    
+
     mockCollection = {
       insertOne: mockInsertOne,
       find: mockFind,
@@ -66,7 +66,6 @@ describe("UserRepository", () => {
     expect(mockCollection.insertOne).toHaveBeenCalledWith(user);
 
   });
-
 
   test('Respository must read an user (R)', async () => {
 
@@ -124,6 +123,6 @@ describe("UserRepository", () => {
 
     // 5. Db must be empty.
     expect((await userRepo.findAll()).length).toBe(0);
-    
+
   });
 });
