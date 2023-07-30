@@ -87,11 +87,23 @@ describe("UserRepository", () => {
         expect(await repository.findById(updatedUser._id)).toStrictEqual(updatedUser)
     });
 
-    test.todo('Respository must delete an user (D)');
-    // 1 -> Db must be empty.
-    // 2 -> User created with success.
-    // 3 -> First record must be equal the user object.
-    // 4. Delete the user.
-    // 5. Db must be empty.
+    test('Respository must delete an user (D)', async () => {
 
+        // 1 -> Db must be empty.
+        expect((await repository.findAll()).length).toBe(0);
+
+        // 2 -> User created with success.
+        const result = await repository.create(user);
+        expect(result).toStrictEqual(expect.objectContaining(user));
+
+        // 3 -> First record must be equal the user object.
+        expect((await repository.findAll())[0]).toStrictEqual(expect.objectContaining(user));
+
+        // 4. Delete the user.
+        await repository.deleteOne(user)
+        
+        // 5. Db must be empty.
+        expect((await repository.findAll()).length).toBe(0);
+
+    });
 });
