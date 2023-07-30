@@ -11,6 +11,7 @@ interface UserRepository {
   deleteAll: () => Promise<void>;
   create: (user: User) => Promise<User>;
   findAll: () => Promise<User[]>;
+  update: (user: User) => Promise<User>;
 }
 
 function UserRepository(collection): UserRepository {
@@ -28,10 +29,16 @@ function UserRepository(collection): UserRepository {
     return await collection.find({}).toArray();
   }
 
+  async function update(user: User): Promise<User> {
+    await collection.updateOne({name: user.name, email: user.email, password: user.password});
+    return user;
+  }
+
   return {
     deleteAll,
     create,
     findAll,
+    update
   };
 }
 
