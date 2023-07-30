@@ -45,4 +45,11 @@ describe("UserRepository", () => {
         expect(users.length).toBe(1);
 
     })
+
+    test.todo('Respository must read an user (R)');
+  
+    test.todo('Respository must update an user (U)');
+  
+    test.todo('Respository must delete an user (D)');
+    
 });
