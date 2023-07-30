@@ -12,6 +12,7 @@ interface UserRepository {
   create: (user: User) => Promise<User>;
   findAll: () => Promise<User[]>;
   update: (user: User) => Promise<User>;
+  deleteOne: (user: User) => Promise<User>;
 }
 
 function UserRepository(collection): UserRepository {
@@ -34,11 +35,17 @@ function UserRepository(collection): UserRepository {
     return user;
   }
 
+  async function deleteOne(user: User): Promise<User> {
+    await collection.deleteOne({name: user.name});
+    return user;
+  }
+
   return {
     deleteAll,
     create,
     findAll,
-    update
+    update,
+    deleteOne
   };
 }
 
