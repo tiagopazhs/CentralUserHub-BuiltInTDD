@@ -1,8 +1,14 @@
-import {describe, expect, test} from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 import { MongoClient } from "mongodb";
 import UserRepository from "../../src/repository";
 
 describe("UserRepository", () => {
+
+    const user = {
+        name: 'Renato',
+        email: 'contato.unit@legiaourbana.com',
+        password: 'senha123',
+    };
 
     let repository;
     let client;
@@ -27,26 +33,17 @@ describe("UserRepository", () => {
 
     test("repository should create a new user (C)", async () => {
 
-        const result = await repository.create({
-            name: 'Renato',
-            email: 'contato@legiaourbana.com',
-            password: '12345678'
-        })
-
         // 1 -> Db must be empty.
+        expect((await repository.findAll()).length).toBe(0);
 
         // 2 -> User created with success.
+        const result = await repository.create(user);
+        
         //containing just a part of the object without the id
-        expect(result).toStrictEqual(expect.objectContaining({
-            name: 'Renato',
-            email: 'contato@legiaourbana.com',
-            password: '12345678'
-        }));
-
-        const users = await repository.findAll();
+        expect(result).toStrictEqual(expect.objectContaining(user));
 
         // 3 -> Db must have one record.
-        expect(users.length).toBe(1);
+        expect((await repository.findAll()).length).toBe(1);
 
     })
 
@@ -54,19 +51,19 @@ describe("UserRepository", () => {
     // 1 -> Db must be empty.
     // 2 -> User created with success.
     // 3 -> First record must be equal the user object.
-  
+
     test.todo('Respository must update an user (U)');
     // 1 -> Db must be empty.
     // 2 -> User created with success.
     // 3 -> First record must be equal the user object.
     // 4. Update the user.
     // 5. Test if the user was update with success.
-  
+
     test.todo('Respository must delete an user (D)');
     // 1 -> Db must be empty.
     // 2 -> User created with success.
     // 3 -> First record must be equal the user object.
     // 4. Delete the user.
     // 5. Db must be empty.
-    
+
 });
