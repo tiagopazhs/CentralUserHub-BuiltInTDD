@@ -9,13 +9,21 @@ describe("UserRepository", () => {
       password: 'senha123',
     };
 
+    // Mock object
     const mockInsertOne = jest.fn(() => Promise.resolve({ ops: [user] }));
-    const mockCollection = { insertOne: mockInsertOne };
+    const mockFind = jest.fn(() => ({
+      toArray: () => Promise.resolve([user]),
+    }));
+    const mockCollection = {
+      insertOne: mockInsertOne,
+      find: mockFind,
+    };
 
     const userRepo = UserRepository(mockCollection);
-    const resultado = await userRepo.create(user);
 
-    expect(resultado).toEqual(user);
+    const result = await userRepo.create(user);
+
+    expect(result).toEqual(user);
 
     // Spy 'Espião'
     expect(mockInsertOne).toHaveBeenCalledWith(user);
@@ -23,6 +31,7 @@ describe("UserRepository", () => {
   });
 
   test('Respository must read an user (R)', async () => {
+
 
     // 1. Db must be empty.
 
