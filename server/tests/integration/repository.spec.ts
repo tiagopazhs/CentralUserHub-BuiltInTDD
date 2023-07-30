@@ -33,6 +33,9 @@ describe("UserRepository", () => {
             password: '12345678'
         })
 
+        // 1 -> Db must be empty.
+
+        // 2 -> User created with success.
         //containing just a part of the object without the id
         expect(result).toStrictEqual(expect.objectContaining({
             name: 'Renato',
@@ -42,14 +45,28 @@ describe("UserRepository", () => {
 
         const users = await repository.findAll();
 
+        // 3 -> Db must have one record.
         expect(users.length).toBe(1);
 
     })
 
     test.todo('Respository must read an user (R)');
+    // 1 -> Db must be empty.
+    // 2 -> User created with success.
+    // 3 -> First record must be equal the user object.
   
     test.todo('Respository must update an user (U)');
+    // 1 -> Db must be empty.
+    // 2 -> User created with success.
+    // 3 -> First record must be equal the user object.
+    // 4. Update the user.
+    // 5. Test if the user was update with success.
   
     test.todo('Respository must delete an user (D)');
+    // 1 -> Db must be empty.
+    // 2 -> User created with success.
+    // 3 -> First record must be equal the user object.
+    // 4. Delete the user.
+    // 5. Db must be empty.
     
 });
