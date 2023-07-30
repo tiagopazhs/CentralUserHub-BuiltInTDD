@@ -11,6 +11,7 @@ interface UserRepository {
   deleteAll: () => Promise<void>;
   create: (user: User) => Promise<User>;
   findAll: () => Promise<User[]>;
+  findById: (user: User) => Promise<User>;
   update: (user: User) => Promise<User>;
   deleteOne: (user: User) => Promise<User>;
 }
@@ -30,8 +31,12 @@ function UserRepository(collection): UserRepository {
     return await collection.find({}).toArray();
   }
 
+  async function findById(user: User): Promise<User> {
+    return await collection.findOne(user._id);
+  }
+
   async function update(user: User): Promise<User> {
-    await collection.updateOne({name: user.name, email: user.email, password: user.password});
+    await collection.updateOne({_id: user._id}, {$set: user});
     return user;
   }
 
@@ -44,6 +49,7 @@ function UserRepository(collection): UserRepository {
     deleteAll,
     create,
     findAll,
+    findById,
     update,
     deleteOne
   };
