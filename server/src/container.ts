@@ -15,9 +15,9 @@ async function createContainer(): Promise<Container> {
     };
 
     async function getClient(): Promise<MongoClient> {
-        // if (services.client) {
-        //     return services.client;
-        // }
+        if (services.client) {
+            return services.client;
+        }
 
         const dsn = 'mongodb://root:root@localhost?retryWrites=true&writeConcern=majority';
         const client = new MongoClient(dsn);
