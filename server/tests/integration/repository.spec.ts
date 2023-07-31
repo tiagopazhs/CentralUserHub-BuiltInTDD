@@ -17,9 +17,7 @@ describe("UserRepository", () => {
     beforeAll(async () => {
         const container = await createContainer();
         client = await container.getClient();
-
-        const collection = client.db('app_db').collection('users');
-        repository = UserRepository(collection);
+        repository = await container.getRepository();
     });
 
 
