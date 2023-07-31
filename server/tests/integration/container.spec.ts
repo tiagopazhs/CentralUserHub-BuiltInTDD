@@ -15,5 +15,11 @@ describe('Container', () => {
         const clientB = await container.getClient();
         expect(clientA).toStrictEqual(clientB);
     });
-    test.todo('It needs to create a repository of events');
+
+    test('It needs to create a repository of events', async () => {
+        const repository = await container.getRepository();
+        expect(repository).not.toBe(null);
+        expect(repository).not.toBe(undefined);
+    });
+
 });
