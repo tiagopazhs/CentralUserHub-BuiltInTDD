@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1690762181217" clover="3.2.0">
+  <project timestamp="1690762181217" name="All files">
+    <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7" elements="18" coveredelements="18" complexity="0" loc="11" ncloc="11" packages="1" files="1" classes="1"/>
+    <file name="repository.ts" path="/Users/tiagohy/my-docs/CentralUserHub-BuiltInTDD/server/src/repository.ts">
+      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+      <line num="22" count="4" type="stmt"/>
+      <line num="26" count="8" type="stmt"/>
+      <line num="27" count="8" type="stmt"/>
+      <line num="31" count="19" type="stmt"/>
+      <line num="35" count="1" type="stmt"/>
+      <line num="39" count="2" type="stmt"/>
+      <line num="40" count="2" type="stmt"/>
+      <line num="44" count="2" type="stmt"/>
+      <line num="45" count="2" type="stmt"/>
+      <line num="48" count="5" type="stmt"/>
+      <line num="58" count="2" type="stmt"/>
+    </file>
+  </project>
+</coverage>
