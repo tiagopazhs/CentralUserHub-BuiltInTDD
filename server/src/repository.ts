@@ -7,7 +7,7 @@ interface User {
   password: string;
 }
 
-interface UserRepository {
+export interface UserRepositoryInterface {
   deleteAll: () => Promise<void>;
   create: (user: User) => Promise<User>;
   findAll: () => Promise<User[]>;
@@ -16,7 +16,7 @@ interface UserRepository {
   deleteOne: (user: User) => Promise<User>;
 }
 
-function UserRepository(collection): UserRepository {
+function UserRepository(collection): UserRepositoryInterface {
 
   async function deleteAll() {
     await collection.deleteMany({});
