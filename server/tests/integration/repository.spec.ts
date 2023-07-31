@@ -1,6 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { MongoClient } from "mongodb";
 import UserRepository from "../../src/repository";
+import createContainer from '../../src/container';
 
 describe("UserRepository", () => {
 
@@ -14,9 +15,9 @@ describe("UserRepository", () => {
     let client;
 
     beforeAll(async () => {
-        const dsn = 'mongodb://root:root@localhost?retryWrites=true&writeConcern=majority'
-        client = new MongoClient(dsn);
-        await client.connect();
+        const container = await createContainer();
+        client = await container.getClient();
+
         const collection = client.db('app_db').collection('users');
         repository = UserRepository(collection);
     });
