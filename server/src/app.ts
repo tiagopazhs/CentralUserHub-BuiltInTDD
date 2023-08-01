@@ -15,7 +15,11 @@ const normalizePk = (user) => {
 };
 
 app.get('/users', async (request: Request, response: Response) => {
-  response.json({ message: 'hello world' }); // Wrap the string in an object
+  const container = await app.get('container');
+  const repository = await container.getRepository();
+  const users = (await repository.findAll()).map(normalizePk);
+  response.set('X-Total-Count', users.length);
+  response.json(users);
 });
 
 export default app;
