@@ -6,7 +6,6 @@ interface User {
   email: string;
   password: string;
 }
-
 export interface UserRepositoryInterface {
   deleteAll: () => Promise<void>;
   create: (user: User) => Promise<User>;
