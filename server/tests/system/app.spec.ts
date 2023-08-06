@@ -78,19 +78,47 @@ describe('Event Management API', () => {
                 // 5. verifify body
             });
             
-            test.todo('Deve retornar 404 para um evento inexistente');
+            test('Shoud return 404 to an existent item', async() => {
+                // 1. Call user details
+                // 2. verify header
+                // 3. verify status code                
+                // 4. verifify body
+            });
         });
 
         describe('PUT /events/:id', () => {
-            test.todo('Deve retornar 200 para um evento existente');
+            test('Should return status 200 to an existent item', async() => {
+                // 1. create an user
+                // 2. call the users update route
+                // 3. verify header
+                // 4. verify status code          
+                // 5. verifify body
+                // 6. check if the user is successfully updated
+            });
 
-            test.todo('Deve retornar 404 para um evento inexistente');
+            test('Shoud return 404 to an existent item', async() => {
+                // 1. Call user details
+                // 2. verify header
+                // 3. verify status code                
+                // 4. verifify body
+            });
         });
 
         describe('DELETE /events/:id', () => {
-            test.todo('Deve retornar 204 para um evento existente');
+            test('Should return status 204 to an existent item', async() => {
+                // 1. create an user
+                // 2. call the users update route
+                // 3. verify status code                
+                // 4. verifify body
+                // 5. check if the user is successfully updated at the db
+            });
 
-            test.todo('Deve retornar 404 para um evento inexistente');
+            test('Shoud return 404 to an existent item', async() => {
+                // 1. Call user details
+                // 2. verify header
+                // 3. verify status code                
+                // 4. verifify body
+            });
         });
     });
     
