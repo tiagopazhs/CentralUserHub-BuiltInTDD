@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb';
 import app from '../../src/app';
 import Container from '../../src/container';
 import supertest from 'supertest';
@@ -41,7 +40,7 @@ describe('Event Management API', () => {
             expect(response.body.length).toBe(1);
 
             const userWithId = { _id: userCreate._id.toHexString(), name: user.name, email: user.email, password: user.password }
-
+            
             expect(response.body[0].email).toStrictEqual(user.email);
             expect(response.body[0].name).toStrictEqual(user.name);
             expect(response.body[0].password).toStrictEqual(user.password);
@@ -63,7 +62,7 @@ describe('Event Management API', () => {
 
             expect(response.statusCode).toBe(201);
             expect(response.body).toStrictEqual(expect.objectContaining(user));
-            
+
         });
 
     });

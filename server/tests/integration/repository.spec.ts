@@ -1,6 +1,4 @@
 import { describe, expect, test } from '@jest/globals';
-import { MongoClient } from "mongodb";
-import UserRepository from "../../src/repository";
 import createContainer from '../../src/container';
 
 describe("UserRepository", () => {
