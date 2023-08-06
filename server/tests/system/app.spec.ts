@@ -66,5 +66,32 @@ describe('Event Management API', () => {
         });
 
     });
+
+    describe('Items endpoints', () => {
+
+        describe('GET /events/:id', () => {
+            test('Should return status 200 to an existent item', async () => {
+                // 1. create an user
+                // 2. call user by id
+                // 3. verify header
+                // 4. verify status code                
+                // 5. verifify body
+            });
+            
+            test.todo('Deve retornar 404 para um evento inexistente');
+        });
+
+        describe('PUT /events/:id', () => {
+            test.todo('Deve retornar 200 para um evento existente');
+
+            test.todo('Deve retornar 404 para um evento inexistente');
+        });
+
+        describe('DELETE /events/:id', () => {
+            test.todo('Deve retornar 204 para um evento existente');
+
+            test.todo('Deve retornar 404 para um evento inexistente');
+        });
+    });
     
 });
