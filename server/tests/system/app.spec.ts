@@ -49,21 +49,22 @@ describe('Event Management API', () => {
             expect(response.body[0]).toStrictEqual(userWithId);
         });
 
-        // test('POST /users', async () => {
+        test('POST /users', async () => {
 
-        //     const response = await supertest(app)
-        //         .post('/users')
-        //         .send(user);
+            user = {
+                name: 'Renato',
+                email: 'contato.unit@legiaourbana.com',
+                password: 'senha123',
+            };
 
-        //         console.log('-->', response.body)
-        //         console.log('-->', user)
+            const response = await request
+                .post('/users')
+                .send(user);
 
-        //         const expectedUser = { ...user, _id: new ObjectId(user.id) };
-        //         expect(response.body).toStrictEqual([expect.objectContaining(expectedUser)]);
+            expect(response.statusCode).toBe(201);
+            expect(response.body).toStrictEqual(expect.objectContaining(user));
             
-        //         console.log('Expected:', expectedUser);
-        //         console.log('Received:', response.body);
-        // });
+        });
 
     });
     
