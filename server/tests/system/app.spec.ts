@@ -31,11 +31,7 @@ describe('Event Management API', () => {
 
     describe('Colection endpoints', () => {
         test('GET /users', async () => {
-            console.log('user->', user)
             const userCreate = await repository.create(user);
-            // format user._id
-            userCreate._id = userCreate._id.toHexString();
-            console.log('user->', user)
 
             const response = await request
                 .get('/users')
@@ -44,20 +40,13 @@ describe('Event Management API', () => {
             expect(response.statusCode).toBe(200);
             expect(response.body.length).toBe(1);
 
-
-            // const expectedId = new ObjectId(response.body[0]._id);
-            // console.log('response.body[0]-->', expectedId)
-            // console.log('response.body[0]-->', response.body[0])
-            // console.log('user-->', user)
-
-            // format user._id
-            const valor = userCreate._id.toHexString();
-            console.log('valor-->', valor);
+            const userWithId = { _id: userCreate._id.toHexString(), name: user.name, email: user.email, password: user.password }
 
             expect(response.body[0].email).toStrictEqual(user.email);
             expect(response.body[0].name).toStrictEqual(user.name);
             expect(response.body[0].password).toStrictEqual(user.password);
-            // expect(response.body[0]).toStrictEqual(expect.objectContaining(user));
+            expect(response.body[0]._id).toStrictEqual(await userCreate._id.toHexString());
+            expect(response.body[0]).toStrictEqual(userWithId);
         });
 
         // test('POST /users', async () => {
