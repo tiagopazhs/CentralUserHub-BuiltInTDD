@@ -6,7 +6,7 @@ const request = supertest(app)
 
 describe('Event Management API', () => {
 
-    const user = {
+    let user = {
         name: 'Renato',
         email: 'contato.unit@legiaourbana.com',
         password: 'senha123',
