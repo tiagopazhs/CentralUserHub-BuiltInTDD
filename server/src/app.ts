@@ -22,4 +22,16 @@ app.get('/users', async (request: Request, response: Response) => {
   response.json(users);
 });
 
+app.post('/users', async (request: Request, response: Response) => {
+  const container = await app.get('container');
+  const repository = await container.getRepository();
+
+  try {
+    const user = await repository.create(request.body);
+    response.status(201).json(normalizePk(user));
+  } catch (e) {
+    response.status(500).json({ error: e.message });
+  }
+
+});
 export default app;
