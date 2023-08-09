@@ -178,9 +178,9 @@ describe('Event Management API', () => {
 
                 // 4. verifify body
                 expect(response.body).toStrictEqual({});
-
+                
                 // 5. check if the user is successfully deleted at the db
-                const deletedUser = await repository.findById(userCreate.userCreateId);
+                const deletedUser = await repository.findById(userCreateId);
                 expect(deletedUser).toBe(null);
             });
 
