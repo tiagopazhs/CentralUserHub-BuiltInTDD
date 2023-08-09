@@ -167,17 +167,38 @@ describe('Event Management API', () => {
         describe('DELETE /users/:id', () => {
             test('Should return status 204 to an existent item', async() => {
                 // 1. create an user
-                // 2. call the users update route
-                // 3. verify status code                
+                const userCreate = await repository.create(user);
+                const userCreateId = await userCreate._id.toHexString()
+
+                // 2. call the users delete route
+                const response = await request.delete(`/users/${userCreateId}`)
+
+                // 3. verify status code
+                expect(response.statusCode).toBe(204);
+
                 // 4. verifify body
-                // 5. check if the user is successfully updated at the db
+                expect(response.body).toStrictEqual({});
+
+                // 5. check if the user is successfully deleted at the db
+                const deletedUser = await repository.findById(userCreate.userCreateId);
+                expect(deletedUser).toBe(null);
             });
 
             test('Shoud return 404 to an existent item', async() => {
                 // 1. Call user details
+                const response = await request.delete(`/users/434343434343`)
+
                 // 2. verify header
+                .expect('Content-type', /application\/json/);
+
                 // 3. verify status code                
+                expect(response.statusCode).toBe(404);
+
                 // 4. verifify body
+                expect(response.body).toStrictEqual({
+                    status: 404,
+                    error: 'User not found'
+                })
             });
         });
     });
