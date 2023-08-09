@@ -77,6 +77,7 @@ describe('Event Management API', () => {
 
                 // 2. call user by id
                 const response = await request.get(`/users/${userCreateId}`)
+                // 3. verify header
                 .expect(200)
                 .expect('Content-Type', /application\/json/);
 
@@ -94,9 +95,19 @@ describe('Event Management API', () => {
             
             test('Shoud return 404 to an existent item', async() => {
                 // 1. Call user details
+                const response = await request.get(`/users/4343434343434343434343`)
                 // 2. verify header
+                .expect(404)
+                .expect('Content-Type', /application\/json/);
+                
                 // 3. verify status code                
+                expect(response.statusCode).toBe(404)
+                
                 // 4. verifify body
+                expect(response.body).toStrictEqual({
+                    status: 404,
+                    error: 'User not found'
+                })
             });
         });
 
