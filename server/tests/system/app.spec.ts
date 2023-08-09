@@ -114,18 +114,53 @@ describe('Event Management API', () => {
         describe('PUT /users/:id', () => {
             test('Should return status 200 to an existent item', async() => {
                 // 1. create an user
+                const userCreate = await repository.create(user);
+                const userCreateId = await userCreate._id.toHexString()
+
                 // 2. call the users update route
+                const newUser = {
+                    name: 'Renato',
+                    email: 'contato.updatet@legiaourbana.com',
+                    password: 'senha123',
+                }
+                const response = await request.put(`/users/${userCreateId}`)
+                .send(newUser)
                 // 3. verify header
+                .expect(200)
+                .expect('Content-Type', /application\/json/);
+                
                 // 4. verify status code          
+                expect(response.statusCode).toBe(200);
+                
                 // 5. verifify body
+                expect(response.body).toStrictEqual(expect.objectContaining({email: 'contato.updatet@legiaourbana.com'}));
+
                 // 6. check if the user is successfully updated
+                const updatedUser = await repository.findById(userCreateId);
+                expect(response.body).toStrictEqual(expect.objectContaining({email: 'contato.updatet@legiaourbana.com'}));
             });
 
             test('Shoud return 404 to an existent item', async() => {
                 // 1. Call user details
+                const newUser = {
+                    name: 'Renato',
+                    email: 'contato.updatet@legiaourbana.com',
+                    password: 'senha123',
+                }
+                const response = await request.put(`/users/4343434343434343`)
+                .send(newUser)
                 // 2. verify header
-                // 3. verify status code                
+                .expect(404)
+                .expect('Content-Type', /application\/json/);
+
+                // 3. verify status code                 
+                expect(response.statusCode).toBe(404);
+                     
                 // 4. verifify body
+                expect(response.body).toStrictEqual({
+                    status: 404,
+                    error: 'User not found'
+                })
             });
         });
 
