@@ -69,13 +69,27 @@ describe('Event Management API', () => {
 
     describe('Items endpoints', () => {
 
-        describe('GET /events/:id', () => {
+        describe('GET /users/:id', () => {
             test('Should return status 200 to an existent item', async () => {
                 // 1. create an user
+                const userCreate = await repository.create(user);
+                const userCreateId = await userCreate._id.toHexString()
+
                 // 2. call user by id
-                // 3. verify header
-                // 4. verify status code                
+                const response = await request.get(`/users/${userCreateId}`)
+                .expect(200)
+                .expect('Content-Type', /application\/json/);
+
+                // 4. verify status code
+                expect(response.statusCode).toBe(200)
+                
                 // 5. verifify body
+                user = {
+                    name: 'Renato',
+                    email: 'contato.unit@legiaourbana.com',
+                    password: 'senha123',
+                };                
+                expect(response.body).toStrictEqual(expect.objectContaining(user))
             });
             
             test('Shoud return 404 to an existent item', async() => {
@@ -86,7 +100,7 @@ describe('Event Management API', () => {
             });
         });
 
-        describe('PUT /events/:id', () => {
+        describe('PUT /users/:id', () => {
             test('Should return status 200 to an existent item', async() => {
                 // 1. create an user
                 // 2. call the users update route
@@ -104,7 +118,7 @@ describe('Event Management API', () => {
             });
         });
 
-        describe('DELETE /events/:id', () => {
+        describe('DELETE /users/:id', () => {
             test('Should return status 204 to an existent item', async() => {
                 // 1. create an user
                 // 2. call the users update route
