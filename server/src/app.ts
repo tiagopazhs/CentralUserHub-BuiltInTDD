@@ -22,6 +22,27 @@ app.get('/users', async (request: Request, response: Response) => {
   response.json(users);
 });
 
+app.get('/users/:id', async (request: Request, response: Response) => {
+  const container = await app.get('container');
+  const repository = await container.getRepository();
+
+  try {
+    const user = await repository.findById(request.params.id);
+
+    if (user === null) {
+      response.status(404).json({
+        status: 404,
+        error: 'User not found'
+      });
+    } else {
+      response.json(normalizePk(user));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
+});
+
 app.post('/users', async (request: Request, response: Response) => {
   const container = await app.get('container');
   const repository = await container.getRepository();
@@ -34,4 +55,6 @@ app.post('/users', async (request: Request, response: Response) => {
   }
 
 });
+
+
 export default app;
