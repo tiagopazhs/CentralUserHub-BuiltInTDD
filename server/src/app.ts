@@ -56,5 +56,29 @@ app.post('/users', async (request: Request, response: Response) => {
 
 });
 
+app.put('/users/:id', async (request: Request, response: Response) => {
+  const container = await app.get('container');
+  const repository = await container.getRepository();
+
+  try {
+    const user = await repository.findById(request.params.id);
+
+    if (user === null) {
+      response.status(404).json({
+        status: 404,
+        error: 'User not found'
+      });
+      return
+    }
+    
+    const newUser = {...user, ...request.body};
+    await repository.update(newUser);
+    response.json(normalizePk(newUser));
+  } catch (e) {
+    response.status(500).json({ error: e.message });
+  }
+
+});
+
 
 export default app;
