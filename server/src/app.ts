@@ -80,5 +80,28 @@ app.put('/users/:id', async (request: Request, response: Response) => {
 
 });
 
+app.delete('/users/:id', async (request: Request, response: Response) => {
+  const container = await app.get('container');
+  const repository = await container.getRepository();
+
+  try {
+    const user = await repository.findById(request.params.id);
+
+    if (user === null) {
+      response.status(404).json({
+        status: 404,
+        error: 'User not found'
+      });
+      return
+    }
+    
+    await repository.deleteOne(user);
+    response.sendStatus(204);
+  } catch (e) {
+    console.log('error-->', e)
+    response.status(500).json({ error: e.message });
+  }
+
+});
 
 export default app;
