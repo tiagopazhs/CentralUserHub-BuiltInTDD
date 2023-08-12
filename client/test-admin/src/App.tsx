@@ -1,13 +1,10 @@
-import {
-  Admin,
-  Resource,
-  ListGuesser,
-  EditGuesser,
-  ShowGuesser,
-} from "react-admin";
-import { dataProvider } from "./dataProvider";
-import { authProvider } from "./authProvider";
+import { Admin, Resource } from "react-admin";
+import jsonServerProvider from 'ra-data-json-server'
+
+const dataProvider = jsonServerProvider('http://localhost:3001')
 
 export const App = () => (
-  <Admin dataProvider={dataProvider} authProvider={authProvider}></Admin>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="users"/>
+  </Admin>
 );
