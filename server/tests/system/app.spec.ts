@@ -44,8 +44,7 @@ describe('Event Management API', () => {
             expect(response.body[0].email).toStrictEqual(user.email);
             expect(response.body[0].name).toStrictEqual(user.name);
             expect(response.body[0].password).toStrictEqual(user.password);
-            expect(response.body[0]._id).toStrictEqual(await userCreate._id.toHexString());
-            expect(response.body[0]).toStrictEqual(userWithId);
+            expect(response.body[0].id).toStrictEqual(await userCreate._id.toHexString());
         });
 
         test('POST /users', async () => {

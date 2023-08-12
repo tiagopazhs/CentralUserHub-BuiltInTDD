@@ -17,7 +17,13 @@ const normalizePk = (user) => {
 app.get('/users', async (request: Request, response: Response) => {
   const container = await app.get('container');
   const repository = await container.getRepository();
-  const users = (await repository.findAll()).map(normalizePk);
+  const users = (await repository.findAll()).map(us => {
+      us.id = us._id;
+      delete us._id;
+      return us;
+    }
+  );
+
   response.set('X-Total-Count', users.length);
   response.json(users);
 });
