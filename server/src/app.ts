@@ -10,19 +10,15 @@ app.use(cors({
 app.set('container', createContainer());
 
 const normalizePk = (user) => {
-  user._id = user._id;
+  user.id = user._id;
+  delete user._id;
   return user;
 };
 
 app.get('/users', async (request: Request, response: Response) => {
   const container = await app.get('container');
   const repository = await container.getRepository();
-  const users = (await repository.findAll()).map(us => {
-      us.id = us._id;
-      delete us._id;
-      return us;
-    }
-  );
+  const users = (await repository.findAll()).map(normalizePk);
 
   response.set('X-Total-Count', users.length);
   response.json(users);
