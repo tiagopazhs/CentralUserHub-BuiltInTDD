@@ -10,7 +10,7 @@ export interface UserRepositoryInterface {
   deleteAll: () => Promise<void>;
   create: (user: User) => Promise<User>;
   findAll: () => Promise<User[]>;
-  findById: (user: User) => Promise<User>;
+  findById: (id: string) => Promise<User>;
   update: (user: User) => Promise<User>;
   deleteOne: (user: User) => Promise<User>;
 }
@@ -29,11 +29,10 @@ function UserRepository(collection): UserRepositoryInterface {
   async function findAll(): Promise<User[]> {
     return await collection.find({}).toArray();
   }
-
-  async function findById(user: User): Promise<User> {
-    return await collection.findOne(user._id);
+  async function findById(id: string): Promise<User> {
+    return await collection.findOne({_id: new ObjectId(id)});
   }
-
+  
   async function update(user: User): Promise<User> {
     await collection.updateOne({_id: user._id}, {$set: user});
     return user;
