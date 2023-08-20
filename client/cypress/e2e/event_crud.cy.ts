@@ -1,6 +1,5 @@
 describe('Event crud', () => {
   it('Should list all users', () => {
-    cy.task('db:erase');
     cy.visit('http://localhost:5173');
     cy.contains('Kiko')
   });
