@@ -18,13 +18,23 @@ describe('Event crud', () => {
     cy.contains('contato@capital.com');
   });
 
-  it.only('Should delete an user', () => {
+  it('Should delete an user', () => {
     cy.visit('http://localhost:5173');
     cy.get('.MuiTableBody-root > :nth-child(1) > .column-id').click();
     cy.get('.MuiButton-text').click();
     cy.contains('Element deleted')
   });
 
+  it('Should update an user', () => {
+    cy.visit('http://localhost:5173');
+    cy.get('.MuiTableBody-root > :nth-child(1) > .column-id').click();
+    cy.get('#email').clear()
+    cy.get('#email').type('contatoUpdated@capital.com');
+    cy.get('.RaToolbar-defaultToolbar > .MuiButton-contained').click();
+    cy.contains('Element updated');
+    cy.visit('http://localhost:5173');
+    cy.contains('contatoUpdated@capital.com');
+  });
 })
 
 // describe('Event CRUD', () => {
