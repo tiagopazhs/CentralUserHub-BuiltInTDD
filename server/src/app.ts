@@ -106,4 +106,18 @@ app.delete('/users/:id', async (request: Request, response: Response) => {
 
 });
 
+app.delete('/users', async (request: Request, response: Response) => {
+  const container = await app.get('container');
+  const repository = await container.getRepository();
+
+  try {   
+    await repository.deleteAll();
+    response.status(204).json({ success: "All users deleted with success" });
+  } catch (e) {
+    console.log('error-->', e);
+    response.status(500).json({ error: e.message });
+  }
+});
+
+
 export default app;
