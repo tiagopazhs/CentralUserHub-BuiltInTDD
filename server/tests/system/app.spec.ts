@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import app from '../../src/app';
 import Container from '../../src/container';
 import supertest from 'supertest';
@@ -94,7 +95,7 @@ describe('Event Management API', () => {
             
             test('Shoud return 404 to an existent item', async() => {
                 // 1. Call user details
-                const response = await request.get(`/users/4343434343434343434343`)
+                const response = await request.get(`/users/${new ObjectId()}`)
                 // 2. verify header
                 .expect(404)
                 .expect('Content-Type', /application\/json/);
@@ -146,7 +147,7 @@ describe('Event Management API', () => {
                     email: 'contato.updatet@legiaourbana.com',
                     password: 'senha123',
                 }
-                const response = await request.put(`/users/4343434343434343`)
+                const response = await request.put(`/users/${new ObjectId()}`)
                 .send(newUser)
                 // 2. verify header
                 .expect(404)
@@ -185,7 +186,7 @@ describe('Event Management API', () => {
 
             test('Shoud return 404 to an existent item', async() => {
                 // 1. Call user details
-                const response = await request.delete(`/users/434343434343`)
+                const response = await request.delete(`/users/${new ObjectId()}`)
 
                 // 2. verify header
                 .expect('Content-type', /application\/json/);
