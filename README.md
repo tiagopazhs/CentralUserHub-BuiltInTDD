@@ -9,11 +9,9 @@
   
 </p>
 
-<h4>Demonstration:</h4>
+<h4>Back-end coverage:</h4>
 <p align="center">
-  ![Alt text](/client/docs/image.png)
-
-  <img src="[https://github.com/tiagopazhs/orders-dashboard/blob/main/web/src/assets/screenshots/sc1.jpg](https://github.com/tiagopazhs/orders-dashboard/assets/81580990/ccd52ee6-e960-49ae-98e9-a71f98e95b46)" alt="sample" style="width: 85%">
+  <img src="/client/docs/image.png" alt="sample" style="width: 85%">
 </p>
 
 <h2>Technologies</h2>
