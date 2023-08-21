@@ -4,10 +4,7 @@
 <h2>Purpose</h2>
 <p>A dynamic pannel of users can help to avoid future problems, because we can change the acces and delete users everything un one simple pannel.</p>
 <h4>Demonstration:</h4>
-<p align="center">
-  <img src="[https://github.com/tiagopazhs/orders-dashboard/blob/main/web/src/assets/screenshots/sc1.jpg](https://github.com/tiagopazhs/orders-dashboard/assets/81580990/ccd52ee6-e960-49ae-98e9-a71f98e95b46)" alt="sample" style="width: 85%">
-  
-</p>
+<img src="[https://github.com/tiagopazhs/orders-dashboard/blob/main/web/src/assets/screenshots/sc1.jpg](https://github.com/tiagopazhs/orders-dashboard/assets/81580990/ccd52ee6-e960-49ae-98e9-a71f98e95b46)" alt="sample" style="width: 85%">
 ![image](https://github.com/tiagopazhs/CentralUserHub-BuiltInTDD/assets/81580990/d638f708-c44e-4939-8baf-7275b35800b1)
 
 
