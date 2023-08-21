@@ -8,7 +8,8 @@
   <img src="[https://github.com/tiagopazhs/orders-dashboard/blob/main/web/src/assets/screenshots/sc1.jpg](https://github.com/tiagopazhs/orders-dashboard/assets/81580990/ccd52ee6-e960-49ae-98e9-a71f98e95b46)" alt="sample" style="width: 85%">
   
 </p>
-![image](https://github.com/tiagopazhs/CentralUserHub-BuiltInTDD/assets/81580990/814b5976-977e-4def-a67d-ff6260db1ceb)
+![image](https://github.com/tiagopazhs/CentralUserHub-BuiltInTDD/assets/81580990/d638f708-c44e-4939-8baf-7275b35800b1)
+
 
 
 <h4>Back-end coverage:</h4>
