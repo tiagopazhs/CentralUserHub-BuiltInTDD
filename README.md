@@ -14,6 +14,11 @@
   <img src="/client/docs/image.png" alt="sample" style="width: 85%">
 </p>
 
+<h4>Front-end tests:</h4>
+<p align="center" style="width: 85%">  
+  ![image](https://github.com/tiagopazhs/CentralUserHub-BuiltInTDD/assets/81580990/3152cfa9-5ec6-4cc0-a308-98996fba8441)
+</p>
+
 <h2>Technologies</h2>
 <p>We used the following technologies to build this project:</p>
 <p align="center">
