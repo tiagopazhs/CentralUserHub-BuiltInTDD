@@ -21,7 +21,7 @@
 <h2>Technologies</h2>
 <p>We used the following technologies to build this project:</p>
 <p align="center">
-    <img src="https://skillicons.dev/icons?i=js,react,html,css,materialui,bootstrap,nodejs,express,postman,git" />
+    <img src="https://skillicons.dev/icons?i=jest,js,ts,react,vite,html,css,nodejs,express,docker,postman,git" />
 </p>
 
 
