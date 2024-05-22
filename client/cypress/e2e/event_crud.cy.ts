@@ -1,11 +1,14 @@
 describe('Event crud', () => {
   
-  beforeEach(() => {
+  before(() => {
     cy.task('db:erase');
+  });
+
+  beforeEach(() => {
     cy.visit('http://localhost:5173');
   });
 
-  it.only('Should create an user', () => {
+  it('Should create an user', () => {
     cy.get('.RaCreateButton-root').click();
     cy.get('#name').type('Kiko Zambianchi');
     cy.get('#email').type('contato@capital.com');
@@ -13,13 +16,11 @@ describe('Event crud', () => {
     cy.get('.MuiInputAdornment-root > .MuiButtonBase-root').click();
     cy.get('.RaToolbar-defaultToolbar > .MuiButtonBase-root').click();
     cy.contains('created');
-    cy.visit('http://localhost:5173');
-    cy.contains('Kiko Zambianchi');
-    cy.contains('contato@capital.com');
   });
 
   it('Should read all users', () => {
-    cy.contains('Kiko')
+    cy.contains('Kiko Zambianchi');
+    cy.contains('contato@capital.com');
   });
 
   it('Should update an user', () => {
@@ -27,7 +28,6 @@ describe('Event crud', () => {
     cy.get('#email').clear().type('contatoUpdated@capital.com');
     cy.get('.RaToolbar-defaultToolbar > .MuiButton-contained').click();
     cy.contains('Element updated');
-    cy.visit('http://localhost:5173');
     cy.contains('contatoUpdated@capital.com');
   });
 
